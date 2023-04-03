@@ -14,7 +14,7 @@ export const theme = extendTheme({
   font: {
     body: "Open Sans, sans-serif",
   },
-  style: {
+  styles: {
     global: () => ({
         body: {
             bg: "gray.200",
@@ -22,6 +22,6 @@ export const theme = extendTheme({
     }),
   },
   components: {
-    
+    // Button
   }
 })
