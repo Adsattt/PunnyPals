@@ -14,7 +14,7 @@ type SearchInputProps = {
 
 const SearchInput: React.FC<SearchInputProps> = () => {
   return (
-    <Flex flexGrow={1} mr={2} align='center'>
+    <Flex flexGrow={1} mr={2} alignItems='center'>
       <InputGroup>
         <InputLeftElement
           pointerEvents="none"
