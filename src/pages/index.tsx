@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 
 const Home: NextPage = () => {
-  return <div>Hello World </div>
+  return <div>Hello World</div>
 };
 
 export default Home;
