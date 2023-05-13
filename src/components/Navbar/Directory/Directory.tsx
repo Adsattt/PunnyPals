@@ -1,5 +1,5 @@
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { Flex, Icon, Menu, MenuButton, MenuList, Text } from "@chakra-ui/react";
+import { Flex, Icon, Menu, MenuButton, MenuList, Text, Image } from "@chakra-ui/react";
 import { BiHomeAlt2 } from "react-icons/bi";
 import React from "react";
 import Communities from "./Communities";
@@ -19,7 +19,8 @@ const Directory: React.FC = () => {
           width={{ base: "auto", lg: "200px" }}
         >
           <Flex align="center" mb={1}>
-            <Icon as={BiHomeAlt2} fontSize={24} mr={{ base: 1, md: 2 }} ml={{ base: 1, md: 2 }} />
+            <Image src="/images/bx_home-alt-2.svg"
+            height={30} mr={{ base: 1, md: 2 }} ml={{ base: 1, md: 2 }} />
             <Flex display={{ base: "none", lg: "flex" }}>
               <Text fontWeight={600} fontSize="10pt">
                 Home
