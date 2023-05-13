@@ -37,6 +37,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ user }) => {
           }}
           height="34px"
           bg="gray.50"
+          borderRadius={100}
         />
       </InputGroup>
     </Flex>

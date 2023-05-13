@@ -7,8 +7,8 @@ import { BsLink45Deg } from "react-icons/bs";
 import { FaReddit } from "react-icons/fa";
 import { IoImageOutline } from "react-icons/io5";
 import { authModalState } from "../../atoms/authModalAtom";
-import { CgProfile } from "react-icons/cg";
 import { auth } from "@/src/firebase/clientApp";
+import {Image, Button} from "@chakra-ui/react";
 import { useSetRecoilState } from "recoil";
 // import useDirectory from "../../hooks/useDirectory";
 
@@ -38,7 +38,7 @@ const CreatePostLink: React.FC<CreatePostProps> = () => {
       p={2}
       mb={4}
     >
-      <Icon as={CgProfile} fontSize={36} color="gray.300" mr={4} />
+     <Image src="/images/Profile.png" height="35px" mr={5} />
       <Input
         placeholder="Create Post"
         fontSize="10pt"
@@ -54,20 +54,14 @@ const CreatePostLink: React.FC<CreatePostProps> = () => {
           border: "1px solid",
           borderColor: "blue.500",
         }}
-        bg="gray.50"
+        bg="gray.300"
         borderColor="gray.200"
         height="36px"
-        borderRadius={4}
+        borderRadius={100}
         mr={4}
         onClick={onClick}
       />
-      <Icon
-        as={IoImageOutline}
-        fontSize={24}
-        mr={4}
-        color="gray.400"
-        cursor="pointer"
-      />
+      <Image src="/images/image.svg" height="25px" mr={4} />
       <Icon as={BsLink45Deg} fontSize={24} color="gray.400" cursor="pointer" />
     </Flex>
   );

@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import PageContent from '../components/Layout/PageContent';
 import CreatePostLink from '../components/Layout/CreatePostLink';
+import Posts from '../components/Post/Posts';
 
 const Home: NextPage = () => {
   return( 
@@ -11,6 +12,7 @@ const Home: NextPage = () => {
     <PageContent>
         <>
         <CreatePostLink/>
+        <Posts/>
         </>
         <>
         <div>RHS</div>
