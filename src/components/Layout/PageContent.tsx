@@ -23,6 +23,8 @@ const PageContent: React.FC<PageContentProps> = ({ children }) => {
         {/*LHS*/}
         <Flex  
           direction="column"
+          border={9}
+          borderColor="black"
           width={{ base: "100%", md: "65%" }}
           mr={{ base: 0, md: 6 }}
           /*border='2px solid blue'*/>{children && children[0 as keyof typeof children]}</Flex>
