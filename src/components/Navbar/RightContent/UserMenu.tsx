@@ -16,7 +16,7 @@ import { signOut } from "firebase/auth";
 import React from "react";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlineLogin } from "react-icons/md";
-import { MdNoAccounts} from "react-icons/md";
+import { BsPersonX } from "react-icons/bs";
 import { VscAccount } from "react-icons/vsc";
 import { useSetRecoilState } from "recoil";
 
@@ -85,10 +85,9 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
               fontSize="10pt"
               fontWeight={600}
               _hover={{ bg: "blue.400", color: "white" }}
-              onClick={() => signOut(auth)}
             >
               <Flex align="center">
-                <Icon as={MdNoAccounts} fontSize={20} mr={2} /> Delete Account
+                <Icon as={BsPersonX} fontSize={20} mr={2} /> Delete Account
               </Flex>
             </MenuItem>
           </>
