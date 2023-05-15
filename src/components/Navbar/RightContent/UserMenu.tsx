@@ -1,22 +1,13 @@
 import { authModalState } from "@/src/atoms/authModalAtom";
 import { auth } from "@/src/firebase/clientApp";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import {
-    Flex,
-    Icon,
-    Menu,
-    MenuButton,
-    MenuDivider,
-    MenuItem,
-    MenuList,
-    Text
-} from "@chakra-ui/react";
+import {Flex, Icon, Menu, MenuButton, MenuDivider,MenuItem,MenuList,Text, Image, Button} from "@chakra-ui/react";
 import { User } from "@firebase/auth";
 import { signOut } from "firebase/auth";
 import React from "react";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlineLogin } from "react-icons/md";
-import { MdNoAccounts} from "react-icons/md";
+import { BsPersonX } from "react-icons/bs";
 import { VscAccount } from "react-icons/vsc";
 import { useSetRecoilState } from "recoil";
 
@@ -39,7 +30,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
           <Flex align="center">
             {user ? (
               <>
-                <Icon as={VscAccount} fontSize={24} mr={1} color="gray.600" />
+                <Image src="/images/Profile.png" height="30px" mr={4} />
                 <Flex
                   display={{ base: "none", md: "flex" }}
                   fontSize="8pt"
@@ -66,8 +57,9 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
               fontWeight={600}
               _hover={{ bg: "blue.400", color: "white" }}
             >
+
               <Flex align="center">
-                <Icon as={CgProfile} fontSize={20} mr={2} /> Profile
+                <Image src="/images/Profile.png" height="20px" mr={4} /> Profile
               </Flex>
             </MenuItem>
             <MenuDivider />
@@ -85,10 +77,10 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
               fontSize="10pt"
               fontWeight={600}
               _hover={{ bg: "blue.400", color: "white" }}
-              onClick={() => signOut(auth)}
             >
+              
               <Flex align="center">
-                <Icon as={MdNoAccounts} fontSize={20} mr={2} /> Delete Account
+                <Icon as={BsPersonX} fontSize={20} mr={2} /> Delete Account
               </Flex>
             </MenuItem>
           </>
