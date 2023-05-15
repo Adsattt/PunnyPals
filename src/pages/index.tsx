@@ -19,7 +19,7 @@ const Home: NextPage = () => {
         </>
         <>
         <Stack>
-          <Box>
+          <Box marginBottom={5}>
             <Category/>
           </Box>
         <About/>
