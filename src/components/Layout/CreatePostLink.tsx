@@ -1,16 +1,12 @@
 import { Flex, Icon, Input } from "@chakra-ui/react";
-// import Link from "next/link";
+import { auth } from "@/src/firebase/clientApp";
+import { Image } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { BsLink45Deg } from "react-icons/bs";
-import { FaReddit } from "react-icons/fa";
-import { IoImageOutline } from "react-icons/io5";
-import { authModalState } from "../../atoms/authModalAtom";
-import { auth } from "@/src/firebase/clientApp";
-import {Image, Button} from "@chakra-ui/react";
 import { useSetRecoilState } from "recoil";
-// import useDirectory from "../../hooks/useDirectory";
+import { authModalState } from "../../atoms/authModalAtom";
 
 type CreatePostProps = {};
 
@@ -24,7 +20,7 @@ const CreatePostLink: React.FC<CreatePostProps> = () => {
         setAuthModalState({open: true, view: "login"});
         return;
     }
-    // Open directory menu to select community to post to
+    router
   };
   return (
     <Flex
