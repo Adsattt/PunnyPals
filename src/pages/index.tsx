@@ -7,6 +7,7 @@ import CreatePostLink from '../components/Layout/CreatePostLink';
 import Posts from '../components/Post/Posts';
 import Category from '../components/Categories/Category';
 import About from '../components/AboutUs/About_us';
+import { Box, Stack } from '@chakra-ui/react';
 
 const Home: NextPage = () => {
   return( 
@@ -17,9 +18,12 @@ const Home: NextPage = () => {
         <Posts/>
         </>
         <>
-        <Category/>
-        <div> " " </div>
+        <Stack>
+          <Box>
+            <Category/>
+          </Box>
         <About/>
+        </Stack>
         </>
     </PageContent>
     </>
