@@ -1,6 +1,6 @@
 import { atom } from "recoil"
 
-export interface OtherProfile {
+export interface UserProfile {
     id: string
     numberOfMemes: number
     numberOfVotes: number
