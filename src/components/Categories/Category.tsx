@@ -44,7 +44,7 @@ const Category: React.FC<CategoryProps>=({}) =>{
                         <Image src="/images/generallogo.png" height="20px" mr={10} ml={3}>
                         </Image> 
                             <Flex mr={10}>
-                            <Text> General</Text>  
+                            <Text fontWeight={550}> General</Text>  
                             </Flex>
                         </Flex>
                     </Flex> 

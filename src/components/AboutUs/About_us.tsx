@@ -17,7 +17,7 @@ const About: React.FC<AboutProps>=({}) =>{
             bg="white"
             borderRadius="10px 10px 0px 0px"
         >
-            <Image src="/images/Category.png" height="18px"
+            <Image src="/images/AboutUs.png" height="15px"
             marginTop={1}
             marginLeft={2}
             />
@@ -31,60 +31,61 @@ const About: React.FC<AboutProps>=({}) =>{
                 borderRadius="0px 0px 10px 10px">
                 <Stack>
                     <Flex 
-                    justify="md: space-between"
-                    align="center"
-                    bg="gray.100"
-                    height="30px"
-                    borderRadius={5}
-                    p={2}
-                    mb={2}
+                    // justify="md: space-between"
+                    // align="center"
+                    // bg="gray.100"
+                    // height="30px"
+                    // borderRadius={5}
+                    // p={2}
+                    // mb={2}
                     >
                         <Flex 
                          justify="space-evenly"
                          align="center">
-                        <Image src="/images/generallogo.png" height="20px" mr={10} ml={3}>
+                        <Image src="/images/infologo.png" height="28px" mr={9} ml={2} marginBottom={2}>
                         </Image> 
                             <Flex mr={10}>
-                            <Text> General</Text>  
+                            <Text fontWeight={700}
+                            fontSize = {12} marginBottom={2}
+                            color="gray.600">  More Information</Text>  
                             </Flex>
                         </Flex>
                     </Flex> 
                 </Stack>
                 <Stack>
-                    <Flex 
-                    justify="md: space-between"
-                    align="center"
-                    bg="gray.100"
-                    height="30px"
-                    borderRadius={5}
-                    p={2}
-                    mb={2}
-                    >
+                    <Flex>
                         <Flex 
                          justify="space-evenly"
                          align="center">
-                        <Image src="/images/pkulogo.png" height="18px" mr={10} ml={3}>
+                        <Image src="/images/messagelogo.png" height="27px" mr={9} ml={2} marginBottom={2}>
                         </Image> 
-                            <Text>PKU</Text>  
+                            <Text fontWeight={700}
+                            fontSize = {12} marginBottom={2} color="gray.600">Contacts</Text>  
                         </Flex>
                     </Flex> 
                 </Stack>
                 <Stack>
                     <Flex 
-                    justify="md: space-between"
-                    align="center"
-                    bg="gray.100"
-                    height="30px"
-                    borderRadius={5}
-                    p={2}
-                    mb={2}
                     >
                         <Flex 
                          justify="space-evenly"
                          align="center">
-                        <Image src="/images/ilkomlogo.png" height="28px" mr={9} ml={2}>
+                        <Image src="/images/notelogo.png" height="28px" mr={9} ml={2} marginBottom={2}>
                         </Image> 
-                            <Text>Ilkom</Text>  
+                            <Text fontWeight={700}
+                            fontSize = {12} marginBottom={2} color="gray.600">Term of Service</Text>  
+                        </Flex>
+                    </Flex> 
+                </Stack>
+                <Stack>
+                    <Flex>
+                        <Flex 
+                         justify="space-evenly"
+                         align="center">
+                        <Image src="/images/privacylogo.png" height="28px" mr={9} ml={2} marginBottom={2}>
+                        </Image> 
+                            <Text fontWeight={700}
+                            fontSize = {12} marginBottom={2} color="gray.600">Privacy policy</Text>  
                         </Flex>
                     </Flex> 
                 </Stack>
