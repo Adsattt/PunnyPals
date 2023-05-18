@@ -44,7 +44,7 @@ const Category: React.FC<CategoryProps>=({}) =>{
                         <Image src="/images/generallogo.png" height="20px" mr={10} ml={3}>
                         </Image> 
                             <Flex mr={10}>
-                            <Text fontWeight={550}> General</Text>  
+                            <Text fontWeight={550} color="gray.600"> General</Text>  
                             </Flex>
                         </Flex>
                     </Flex> 
@@ -64,7 +64,7 @@ const Category: React.FC<CategoryProps>=({}) =>{
                          align="center">
                         <Image src="/images/pkulogo.png" height="18px" mr={10} ml={3}>
                         </Image> 
-                            <Text>PKU</Text>  
+                            <Text fontWeight={550} color="gray.600">PKU</Text>  
                         </Flex>
                     </Flex> 
                 </Stack>
@@ -83,7 +83,7 @@ const Category: React.FC<CategoryProps>=({}) =>{
                          align="center">
                         <Image src="/images/ilkomlogo.png" height="28px" mr={9} ml={2}>
                         </Image> 
-                            <Text>Ilkom</Text>  
+                            <Text fontWeight={550} color="gray.600">Ilkom</Text>  
                         </Flex>
                     </Flex> 
                 </Stack>

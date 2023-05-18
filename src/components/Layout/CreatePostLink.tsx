@@ -7,6 +7,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { BsLink45Deg } from "react-icons/bs";
 import { useSetRecoilState } from "recoil";
 import { authModalState } from "../../atoms/authModalAtom";
+import submit from "@/src/pages/user/submit";
 
 type CreatePostProps = {};
 
@@ -20,7 +21,8 @@ const CreatePostLink: React.FC<CreatePostProps> = () => {
         setAuthModalState({open: true, view: "login"});
         return;
     }
-    router
+    const{} = router.query;
+        router.push(`/submit`)
   };
   return (
     <Flex
