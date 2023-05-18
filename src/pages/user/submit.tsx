@@ -1,6 +1,6 @@
 import PageContent from "@/src/components/Layout/PageContent";
-import NewPostForm from "@/src/components/Post/NewPostForm";
 import { Box, Text } from "@chakra-ui/react";
+import NewPostForm from "@/src/components/Post/NewPostForm";
 import React from "react";
 const submit: React.FC = () => {
   return (

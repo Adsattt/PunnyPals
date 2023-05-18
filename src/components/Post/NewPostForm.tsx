@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { UserProfile } from "@/src/atoms/usersAtom";
 import { Flex, Icon, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
@@ -38,3 +39,4 @@ const NewPostForm: React.FC<NewPostFormProps> = ({ userData }) => {
   );
 };
 export default NewPostForm;
+
