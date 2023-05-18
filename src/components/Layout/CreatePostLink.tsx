@@ -21,12 +21,7 @@ const CreatePostLink: React.FC<CreatePostProps> = () => {
         setAuthModalState({open: true, view: "login"});
         return;
     }
-<<<<<<< HEAD
     router.push('/user/submit');
-=======
-    const{} = router.query;
-        router.push(`/submit`)
->>>>>>> 6ee40cb4fa2cf76c4ccb288898a8d41dbfe86a45
   };
   return (
     <Flex
