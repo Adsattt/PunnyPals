@@ -1,7 +1,8 @@
 import { atom } from "recoil"
 
 export interface UserProfile {
-    id: string
+    displayName: string
+    userName: string
     numberOfMemes: number
     numberOfVotes: number
     description: string

@@ -1,10 +1,5 @@
-import { Flex, Icon,Input, Image, Box, Text, Stack } from "@chakra-ui/react";
+import { Box, Flex, Image, Stack, Text } from "@chakra-ui/react";
 import React from "react";
-import { BsChatDots } from "react-icons/bs";
-import { GrAdd } from "react-icons/gr";
-import {
-  IoNotificationsOutline
-} from "react-icons/io5";
 
 type CategoryProps = {};
 
