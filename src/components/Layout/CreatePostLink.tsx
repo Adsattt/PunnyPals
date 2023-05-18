@@ -20,7 +20,7 @@ const CreatePostLink: React.FC<CreatePostProps> = () => {
         setAuthModalState({open: true, view: "login"});
         return;
     }
-    router
+    router.push('/user/submit');
   };
   return (
     <Flex
@@ -63,3 +63,4 @@ const CreatePostLink: React.FC<CreatePostProps> = () => {
   );
 };
 export default CreatePostLink;
+
