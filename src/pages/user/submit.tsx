@@ -1,8 +1,11 @@
 import PageContent from "@/src/components/Layout/PageContent";
 import NewPostForm from "@/src/components/Post/NewPostForm";
+import { auth } from "@/src/firebase/clientApp";
 import { Box, Text } from "@chakra-ui/react";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 const submit: React.FC = () => {
+  const [user] = useAuthState(auth)
   return (
     <PageContent>
       <>
@@ -11,7 +14,7 @@ const submit: React.FC = () => {
             Create a post
           </Text>
         </Box>
-        <NewPostForm />
+        {user && <NewPostForm user={user} />}
       </>
       <></>
     </PageContent>
