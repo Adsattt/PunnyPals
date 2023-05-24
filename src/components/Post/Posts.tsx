@@ -3,9 +3,10 @@ import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { Post } from "@/src/atoms/postsAtom";
 import usePosts from "@/src/hooks/usePosts";
-import PostItem from "./PostItem"
 import { useAuthState } from "react-firebase-hooks/auth";
-import {Stack} from "@chakra-ui/react";
+import { Stack } from "@chakra-ui/react";
+import PostItem from "./PostItem";
+import PostLoader from "./PostLoader";
 
 type PostsProps = {};
 
@@ -50,18 +51,25 @@ const Posts: React.FC<PostsProps> = () => {
   }, []);
 
   return (
-    <Stack>
-      {postStateValue.posts.map((item) => (
-        <PostItem
-          post={item}
-          userIsCreator={user?.uid === item.creatorId}
-          userVoteValue={undefined}
-          onVote={onVote}
-          onSelectPost={onSelectPost}
-          onDeletePost={onDeletePost}
-        />
-      ))}
-    </Stack>
+    <>
+      {loading ? (
+        <PostLoader />
+      ) : (
+        <Stack>
+          {postStateValue.posts.map((item) => (
+            <PostItem
+            key={item.id}
+              post={item}
+              userIsCreator={user?.uid === item.creatorId}
+              userVoteValue={undefined}
+              onVote={onVote}
+              onSelectPost={onSelectPost}
+              onDeletePost={onDeletePost}
+            />
+          ))}
+        </Stack>
+      )}
+    </>
   );
 };
 

@@ -16,7 +16,7 @@ export type Post = {
   //   voteValue: number;
   // };
   // postIdx?: number;
-  createdAt?: Timestamp;
+  createdAt: Timestamp;
   // editedAt?: Timestamp;
 };
 

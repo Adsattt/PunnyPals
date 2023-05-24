@@ -14,6 +14,7 @@ import CategoryMenu from "./PostForm/CategoryMenu";
 import ImageUpload from "./PostForm/ImageUpload";
 import { Post } from "@/src/atoms/postsAtom";
 import { firestore, storage } from "@/src/firebase/clientApp";
+import router from "next/router";
 
 type NewPostFormProps = {
   user: User;
@@ -48,7 +49,7 @@ const NewPostForm: React.FC<NewPostFormProps> = ({ user }) => {
       // store the post in database
       const postDocRef = await addDoc(collection(firestore, "posts"), newPost);
       console.log("HERE IS NEW POST ID", postDocRef.id);
-      
+
       // check for selectedFile
       if (selectedFile) {
         // store in storage => getDownloadURL (return imageURL)
@@ -61,12 +62,12 @@ const NewPostForm: React.FC<NewPostFormProps> = ({ user }) => {
           imageURL: downloadURL,
         });
       }
+      // redirect user back to the homePage using router
+      router.back();
     } catch (error: any) {
       console.log("handleCreatePost error", error.message);
     }
     setLoading(false);
-
-    // redirect user back to the homePage using router
   };
 
   const onSelectImage = (event: React.ChangeEvent<HTMLInputElement>) => {

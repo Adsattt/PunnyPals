@@ -9,7 +9,7 @@ import { Button } from './button'
 export const theme = extendTheme({
   colors: {
     brand: {
-      100: "#4267B2",
+      100: "#33B6FF",
     },
   },
   fonts: {
