@@ -7,6 +7,7 @@ export type Post = {
   creatorDisplayName: string; // change to authorDisplayText
   creatorId: string;
   caption: string;
+  category: string,
   numberOfComments: number;
   voteStatus: number;
   imageURL?: string;
@@ -28,6 +29,7 @@ export type Post = {
 interface PostState {
   selectedPost: Post | null;
   posts: Post[];
+  category: string,
   // postVotes: PostVote[];
   // postsCache: {
   //   [key: string]: Post[];
@@ -38,6 +40,7 @@ interface PostState {
 export const defaultPostState: PostState = {
   selectedPost: null,
   posts: [],
+  category: "",
   // postVotes: [],
   // postsCache: {},
   // postUpdateRequired: true,
