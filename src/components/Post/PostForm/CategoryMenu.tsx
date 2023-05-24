@@ -1,19 +1,26 @@
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
+  Flex,
   Menu,
   MenuButton,
-  Button,
-  MenuList,
   MenuItem,
-  Flex,
+  MenuList,
   Text,
-  HStack,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 
-type CategoryMenuProps = {};
+type CategoryMenuProps = {
+  onSelectCategory: (category: string) => void;
+};
 
-const CategoryMenu: React.FC<CategoryMenuProps> = () => {
+const CategoryMenu: React.FC<CategoryMenuProps> = ({ onSelectCategory }) => {
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+  const handleSelectCategory = (category: string) => {
+    setSelectedCategory(category);
+    onSelectCategory(category); // Call the onSelectCategory prop with the selected category
+  };
+
   return (
     <Menu>
       <MenuButton
@@ -44,11 +51,27 @@ const CategoryMenu: React.FC<CategoryMenuProps> = () => {
         </Flex>
       </MenuButton>
       <MenuList>
-        <MenuItem>General</MenuItem>
-        <MenuItem>Ilkom</MenuItem>
-        <MenuItem>PKU</MenuItem>
+        <MenuItem
+          onClick={() => handleSelectCategory("General")}
+          color={selectedCategory === "General" ? "blue.500" : "inherit"} // Mengubah warna teks jika menu dipilih
+        >
+          General
+        </MenuItem>
+        <MenuItem
+          onClick={() => handleSelectCategory("Ilkom")}
+          color={selectedCategory === "Ilkom" ? "blue.500" : "inherit"} // Mengubah warna teks jika menu dipilih
+        >
+          Ilkom
+        </MenuItem>
+        <MenuItem
+          onClick={() => handleSelectCategory("PKU")}
+          color={selectedCategory === "PKU" ? "blue.500" : "inherit"} // Mengubah warna teks jika menu dipilih
+        >
+          PKU
+        </MenuItem>
       </MenuList>
     </Menu>
   );
 };
+
 export default CategoryMenu;

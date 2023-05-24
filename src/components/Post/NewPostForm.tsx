@@ -1,10 +1,4 @@
-import { UserProfile } from "@/src/atoms/usersAtom";
 import { Button, Flex, Stack } from "@chakra-ui/react";
-import React, { useRef, useState } from "react";
-import CategoryMenu from "./PostForm/CategoryMenu";
-import CaptionInputs from "./PostForm/CaptionInputs";
-import ImageUpload from "./PostForm/ImageUpload";
-import { Post } from "@/src/atoms/postsAtom";
 import { User } from "firebase/auth";
 import {
   Timestamp,
@@ -13,8 +7,13 @@ import {
   serverTimestamp,
   updateDoc,
 } from "firebase/firestore";
-import { firestore, storage } from "@/src/firebase/clientApp";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
+import React, { useRef, useState } from "react";
+import CaptionInputs from "./PostForm/CaptionInputs";
+import CategoryMenu from "./PostForm/CategoryMenu";
+import ImageUpload from "./PostForm/ImageUpload";
+import { Post } from "@/src/atoms/postsAtom";
+import { firestore, storage } from "@/src/firebase/clientApp";
 
 type NewPostFormProps = {
   user: User;
@@ -24,11 +23,14 @@ const NewPostForm: React.FC<NewPostFormProps> = ({ user }) => {
   const [captionInputs, setCaptionInputs] = useState({
     caption: "",
   });
+  const [selectedCategory, setSelectedCategory] = useState(""); // Declare selectedCategory state variable
   const [selectedFile, setSelectedFile] = useState<string>();
-
+  const [loading, setLoading] = useState(false);
   const selectFileRef = useRef<HTMLInputElement>(null);
 
-  const [loading, setLoading] = useState(false);
+  const handleSelectCategory = (category: string) => {
+    setSelectedCategory(category);
+  };
 
   const handleCreatePost = async () => {
     // create new post object => type Post
@@ -39,37 +41,36 @@ const NewPostForm: React.FC<NewPostFormProps> = ({ user }) => {
       numberOfComments: 0,
       voteStatus: 0,
       createdAt: serverTimestamp() as Timestamp,
-      id: "",
+      category: selectedCategory,
     };
-    setLoading(true)
+    setLoading(true);
     try {
-      // strore the post in database
+      // store the post in database
       const postDocRef = await addDoc(collection(firestore, "posts"), newPost);
-
+      console.log("HERE IS NEW POST ID", postDocRef.id);
+      
       // check for selectedFile
       if (selectedFile) {
         // store in storage => getDownloadURL (return imageURL)
-        const imageRef = ref(storage,`posts/${postDocRef.id}/image`);
-        await uploadString(imageRef, selectedFile, 'data_url');
-        const downloadURL = await getDownloadURL(imageRef)
+        const imageRef = ref(storage, `posts/${postDocRef.id}/image`);
+        await uploadString(imageRef, selectedFile, "data_url");
+        const downloadURL = await getDownloadURL(imageRef);
 
         // update post doc by adding imageURL
         await updateDoc(postDocRef, {
-          imageURL: downloadURL
-        })
+          imageURL: downloadURL,
+        });
       }
     } catch (error: any) {
-      console.log("handleCreatePost error", error.message)
+      console.log("handleCreatePost error", error.message);
     }
-    setLoading(false)
+    setLoading(false);
 
     // redirect user back to the homePage using router
-    
   };
 
   const onSelectImage = (event: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
-
     if (event.target.files?.[0]) {
       reader.readAsDataURL(event.target.files[0]);
     }
@@ -105,7 +106,7 @@ const NewPostForm: React.FC<NewPostFormProps> = ({ user }) => {
             borderBottom="1px"
             borderColor="#6F6F70"
           >
-            <CategoryMenu />
+            <CategoryMenu onSelectCategory={handleSelectCategory} />
           </Flex>
           <Flex p="12px 8px" direction="column">
             <Stack spacing={3}>
@@ -113,7 +114,7 @@ const NewPostForm: React.FC<NewPostFormProps> = ({ user }) => {
                 captionInputs={captionInputs}
                 handleCreatePost={handleCreatePost}
                 onchange={onTextChange}
-                loading={false}
+                loading={loading}
               />
               <ImageUpload
                 selectedFile={selectedFile}
@@ -130,8 +131,8 @@ const NewPostForm: React.FC<NewPostFormProps> = ({ user }) => {
             padding="0px 30px"
             mt={4}
             isLoading={loading}
-            disabled={!captionInputs.caption}
-            onClick={() => {}}
+            disabled={!captionInputs.caption || !selectedCategory} // Disable button jika caption atau category tidak terisi
+            onClick={handleCreatePost} // Panggil handleCreatePost saat tombol ditekan
           >
             Post
           </Button>
@@ -140,4 +141,5 @@ const NewPostForm: React.FC<NewPostFormProps> = ({ user }) => {
     </Flex>
   );
 };
+
 export default NewPostForm;
