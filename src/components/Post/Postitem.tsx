@@ -1,5 +1,13 @@
 import { Post } from "@/src/atoms/postsAtom";
-import { Flex, Icon, Image, Skeleton, Stack, Text } from "@chakra-ui/react";
+import {
+  Flex,
+  Icon,
+  Image,
+  Skeleton,
+  Spinner,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import moment from "moment";
 import React, { useState } from "react";
 import { BsChat } from "react-icons/bs";
@@ -19,7 +27,7 @@ type PostItemProps = {
   userVoteValue?: number;
   onVote: () => {};
   onSelectPost: () => void;
-  onDeletePost: () => {};
+  onDeletePost: (post: Post) => Promise<boolean>;
 };
 
 const PostItem: React.FC<PostItemProps> = ({
@@ -31,6 +39,22 @@ const PostItem: React.FC<PostItemProps> = ({
   onSelectPost,
 }) => {
   const [loadingImage, setLoadingImage] = useState(true);
+  const [loadingDelete, setLoadingDelete] = useState(false);
+  const [error, setError] = useState(false);
+  const handleDeletePost = async () => {
+    try {
+      setLoadingDelete(true);
+      const success = await onDeletePost(post);
+
+      if (!success) {
+        throw new Error("Failed to delete post");
+      }
+      console.log("Post was deleted");
+    } catch (error: any) {
+      setError(error.message);
+    }
+    setLoadingDelete(false);
+  };
   return (
     <Flex
       border="1px solid"
@@ -135,10 +159,16 @@ const PostItem: React.FC<PostItemProps> = ({
               borderRadius={4}
               _hover={{ bg: "gray.200" }}
               cursor="pointer"
-              onClick={onDeletePost}
+              onClick={handleDeletePost}
             >
-              <Icon as={AiOutlineDelete} mr={2} />
-              <Text fontSize="9pt">Delete</Text>
+              {loadingDelete ? (
+                <Spinner size="sm" />
+              ) : (
+                <>
+                  <Icon as={AiOutlineDelete} mr={2} />
+                  <Text fontSize="9pt">Delete</Text>
+                </>
+              )}
             </Flex>
           )}
         </Flex>
