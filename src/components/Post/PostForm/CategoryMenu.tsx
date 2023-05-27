@@ -6,6 +6,7 @@ import {
   MenuItem,
   MenuList,
   Text,
+  Image
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 
@@ -54,19 +55,28 @@ const CategoryMenu: React.FC<CategoryMenuProps> = ({ onSelectCategory }) => {
         <MenuItem
           onClick={() => handleSelectCategory("General")}
           color={selectedCategory === "General" ? "blue.500" : "inherit"} // Mengubah warna teks jika menu dipilih
+          _hover={{bg: "blue.300" }}
         >
+          <Image src="/images/generallogo.png" height="18px" mr={9} ml={3}>
+          </Image>
           General
         </MenuItem>
         <MenuItem
           onClick={() => handleSelectCategory("Ilkom")}
           color={selectedCategory === "Ilkom" ? "blue.500" : "inherit"} // Mengubah warna teks jika menu dipilih
+          _hover={{bg: "blue.300" }}
         >
+          <Image src="/images/ilkomlogo.png" height="25px" mr={9} ml={2}>
+          </Image>
           Ilkom
         </MenuItem>
         <MenuItem
           onClick={() => handleSelectCategory("PKU")}
           color={selectedCategory === "PKU" ? "blue.500" : "inherit"} // Mengubah warna teks jika menu dipilih
+          _hover={{bg: "blue.300" }}
         >
+          <Image src="/images/pkulogo.png" height="16px" mr={9} ml={3}>
+          </Image>
           PKU
         </MenuItem>
       </MenuList>
