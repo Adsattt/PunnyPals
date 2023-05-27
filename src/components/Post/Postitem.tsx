@@ -25,7 +25,7 @@ type PostItemProps = {
   post: Post;
   userIsCreator: boolean;
   userVoteValue?: number;
-  onVote: () => {};
+  onVote: (post: Post, vote: number) => void;
   onSelectPost: () => void;
   onDeletePost: (post: Post) => Promise<boolean>;
 };
@@ -79,7 +79,7 @@ const PostItem: React.FC<PostItemProps> = ({
           }
           color={userVoteValue === 1 ? "brand.100" : "gray.400"}
           fontSize={22}
-          onClick={onVote}
+          onClick={() => onVote(post, 1)}
           cursor="pointer"
         />
         <Text fontSize="9pt">{post.voteStatus}</Text>
@@ -91,7 +91,7 @@ const PostItem: React.FC<PostItemProps> = ({
           }
           color={userVoteValue === -1 ? "brand.100" : "gray.400"}
           fontSize={22}
-          onClick={onVote}
+          onClick={() => onVote(post, -1)}
           cursor="pointer"
         />
       </Flex>
@@ -99,7 +99,7 @@ const PostItem: React.FC<PostItemProps> = ({
         <Stack spacing={1} p="10px">
           <Stack direction="row" spacing={0.6} align="center" fontSize="9pt">
             <Text>
-              Posted by u/{post.creatorDisplayName}{" "}
+              Posted by @{post.creatorDisplayName}{" "}
               {moment(new Date(post.createdAt?.seconds * 1000)).fromNow()}
             </Text>
           </Stack>
