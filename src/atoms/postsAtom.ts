@@ -20,17 +20,17 @@ export type Post = {
   // editedAt?: Timestamp;
 };
 
-// export type PostVote = {
-//   id?: string;
-//   postId: string;
-//   voteValue: number;
-// };
+export type PostVote = {
+  id: string;
+  postId: string;
+  voteValue: number;
+};
 
 interface PostState {
   selectedPost: Post | null;
   posts: Post[];
   category: string,
-  // postVotes: PostVote[];
+  postVotes: PostVote[];
   // postsCache: {
   //   [key: string]: Post[];
   // };
@@ -41,7 +41,7 @@ export const defaultPostState: PostState = {
   selectedPost: null,
   posts: [],
   category: "",
-  // postVotes: [],
+  postVotes: [],
   // postsCache: {},
   // postUpdateRequired: true,
 };
