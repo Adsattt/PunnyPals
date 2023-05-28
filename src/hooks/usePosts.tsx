@@ -12,12 +12,20 @@ import {
 } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { authModalState } from "../atoms/authModalAtom";
+import { useRouter } from "next/router";
 
 const usePosts = () => {
   const [user, loadingUser] = useAuthState(auth);
   const [postStateValue, setPostStateValue] = useRecoilState(postState);
   const [, setAuthModalState] = useRecoilState(authModalState);
-  const onVote = async (post: Post, vote: number) => {
+  const router = useRouter();
+
+  const onVote = async (
+    event: React.MouseEvent<SVGElement, MouseEvent>,
+    post: Post,
+    vote: number
+  ) => {
+    event.stopPropagation();
     if (!user?.uid) {
       setAuthModalState({ open: true, view: "login" });
       return;
@@ -105,6 +113,13 @@ const usePosts = () => {
         postVotes: updatedPostVotes,
       }));
 
+      if (postStateValue.selectedPost) {
+        setPostStateValue((prev) => ({
+          ...prev,
+          selectedPost: updatePost,
+        }));
+      }
+
       // update post document
       const postRef = doc(firestore, "posts", post.id);
       batch.update(postRef, { voteStatus: updatePost.voteStatus });
@@ -115,7 +130,14 @@ const usePosts = () => {
     }
   };
 
-  const onSelectPost = () => {};
+  const onSelectPost = (post: Post) => {
+    console.log("HERE IS STUFF", post);
+    setPostStateValue((prev) => ({
+      ...prev,
+      selectedPost: { ...post },
+    }));
+    router.push(`/comments/${post.id}`);
+  };
 
   const onDeletePost = async (post: Post): Promise<boolean> => {
     try {
