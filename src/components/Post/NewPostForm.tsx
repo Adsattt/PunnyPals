@@ -132,8 +132,8 @@ const NewPostForm: React.FC<NewPostFormProps> = ({ user }) => {
             padding="0px 30px"
             mt={4}
             isLoading={loading}
-            disabled={!captionInputs.caption || !selectedCategory} // Disable button jika caption atau category tidak terisi
-            onClick={handleCreatePost} // Panggil handleCreatePost saat tombol ditekan
+            disabled={!captionInputs.caption || !selectedCategory || !selectedFile}
+            onClick={handleCreatePost} 
           >
             Post
           </Button>
