@@ -1,13 +1,11 @@
-import { Flex, Icon, Input } from "@chakra-ui/react";
 import { auth } from "@/src/firebase/clientApp";
-import { Image } from "@chakra-ui/react";
+import { Flex, Icon, Image, Input } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { BsLink45Deg } from "react-icons/bs";
 import { useSetRecoilState } from "recoil";
 import { authModalState } from "../../atoms/authModalAtom";
-import submit from "@/src/pages/user/submit";
 
 type CreatePostProps = {};
 
@@ -51,14 +49,14 @@ const CreatePostLink: React.FC<CreatePostProps> = () => {
           border: "1px solid",
           borderColor: "blue.500",
         }}
-        bg="gray.300"
+        bg="gray.200"
         borderColor="gray.200"
         height="36px"
         borderRadius={100}
         mr={4}
         onClick={onClick}
       />
-      <Image src="/images/image.svg" height="25px" mr={4} />
+      <Image src="/images/image.svg" height="25px" mr={3} />
       <Icon as={BsLink45Deg} fontSize={24} color="gray.400" cursor="pointer" />
     </Flex>
   );
