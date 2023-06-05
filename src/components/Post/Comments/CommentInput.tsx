@@ -35,7 +35,7 @@ const CommentInput: React.FC<CommentInputProps> = ({
             fontSize="10pt"
             borderRadius={4}
             minHeight="160px"
-            pb={10}
+            pb={15}
             _placeholder={{ color: "gray.500" }}
             _focus={{
               outline: "none",

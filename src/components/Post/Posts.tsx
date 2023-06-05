@@ -5,7 +5,7 @@ import { Post } from "@/src/atoms/postsAtom";
 import usePosts from "@/src/hooks/usePosts";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Stack } from "@chakra-ui/react";
-import PostItem from "./PostItem";
+import PostItem from "./Postitem";
 import PostLoader from "./PostLoader";
 
 type PostsProps = {};
@@ -44,7 +44,7 @@ const Posts: React.FC<PostsProps> = () => {
     } finally {
       setLoading(false);
     }
-  };
+};
 
   useEffect(() => {
     getPosts();
