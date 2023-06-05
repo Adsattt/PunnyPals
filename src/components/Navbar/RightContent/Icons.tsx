@@ -24,7 +24,7 @@ const Icons: React.FC = () => {
           borderRadius={4}
           _hover={{ bg: "gray.200" }}
         >
-          <Icon as={BsChatDots} fontSize={20} />
+          <Icon as={BsChatDots} fontSize={20} fontWeight={900}/>
         </Flex>
       </Flex>
       <>
