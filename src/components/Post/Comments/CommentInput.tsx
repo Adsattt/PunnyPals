@@ -1,4 +1,4 @@
-import { Flex, Textarea, Button, Text } from "@chakra-ui/react";
+import { Button, Flex, Text, Textarea } from "@chakra-ui/react";
 import { User } from "firebase/auth";
 import React from "react";
 import AuthButtons from "../../Navbar/RightContent/AuthButtons";
@@ -35,7 +35,7 @@ const CommentInput: React.FC<CommentInputProps> = ({
             fontSize="10pt"
             borderRadius={4}
             minHeight="160px"
-            pb={15}
+            pb={10}
             _placeholder={{ color: "gray.500" }}
             _focus={{
               outline: "none",

@@ -1,4 +1,5 @@
 import { Post } from "@/src/atoms/postsAtom";
+import About from "@/src/components/AboutUs/About_us";
 import PageNotFound from "@/src/components/Categories/PageNotFound";
 import PageContent from "@/src/components/Layout/PageContent";
 import CategoryPost from "@/src/components/LeftMenu/CategoryPost";
@@ -7,7 +8,14 @@ import PostItem from "@/src/components/Post/Postitem";
 import { auth, firestore } from "@/src/firebase/clientApp";
 import usePosts from "@/src/hooks/usePosts";
 import { Stack } from "@chakra-ui/react";
-import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
 import { GetServerSidePropsContext } from "next";
 import router from "next/router";
 import React, { useEffect, useState } from "react";
@@ -19,10 +27,44 @@ type CategoryPageProps = {
 };
 
 const CategoryPage: React.FC<CategoryPageProps> = ({ postData }) => {
-  const [user] = useAuthState(auth);
+  const [user, loadingUser] = useAuthState(auth);
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState<Post[]>([]);
-  const { postStateValue, onVote, onDeletePost, onSelectPost } = usePosts();
+  const {
+    postStateValue,
+    setPostStateValue,
+    onDeletePost,
+    onSelectPost,
+    onVote,
+  } = usePosts();
+
+  const buildCategoryFeed = async () => {
+    setLoading(true);
+    try {
+      const postQuery = query(
+        collection(firestore, "posts"),
+        orderBy("createdAt", "asc"),
+        limit(10)
+      );
+      const postDocs = await getDocs(postQuery);
+      const posts = postDocs.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      console.log("buildCategoryFeed posts: ", posts);
+      setPostStateValue((prev) => ({
+        ...prev,
+        posts: posts as Post[],
+      }));
+    } catch (error) {
+      console.error("buildCategoryFeed error", error);
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    buildCategoryFeed();
+  },[loadingUser]);
 
   useEffect(() => {
     setLoading(true);
@@ -61,7 +103,10 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ postData }) => {
         </Stack>
       )}
       <>
-      <CategoryPost />
+        <Stack spacing={4} position="sticky">
+          <CategoryPost />
+          <About />
+        </Stack>
       </>
     </PageContent>
   );
