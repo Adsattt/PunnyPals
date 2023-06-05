@@ -12,14 +12,14 @@ type CreatePostProps = {};
 const CreatePostLink: React.FC<CreatePostProps> = () => {
   const router = useRouter();
   const [user] = useAuthState(auth);
-  const setAuthModalState  = useSetRecoilState(authModalState);
+  const setAuthModalState = useSetRecoilState(authModalState);
   const onClick = () => {
     // Could check for user to open auth modal before redirecting to submit
-    if(!user){
-        setAuthModalState({open: true, view: "login"});
-        return;
+    if (!user) {
+      setAuthModalState({ open: true, view: "login" });
+      return;
     }
-    router.push('/user/submit');
+    router.push("/user/submit");
   };
   return (
     <Flex
@@ -33,7 +33,7 @@ const CreatePostLink: React.FC<CreatePostProps> = () => {
       p={2}
       mb={4}
     >
-     <Image src="/images/Profile.png" height="35px" mr={5} />
+      <Image src="/images/Profile.png" height="35px" mr={5} />
       <Input
         placeholder="Create Post"
         fontSize="10pt"
@@ -62,4 +62,3 @@ const CreatePostLink: React.FC<CreatePostProps> = () => {
   );
 };
 export default CreatePostLink;
-

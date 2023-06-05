@@ -1,15 +1,18 @@
 import { Post } from "@/src/atoms/postsAtom";
 import {
+  Button,
   Flex,
   Icon,
   Image,
   Skeleton,
   Spinner,
   Stack,
-  Text,
+  Text
 } from "@chakra-ui/react";
 import moment from "moment";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { AiOutlineDelete } from "react-icons/ai";
 import { BsChat } from "react-icons/bs";
 import {
   IoArrowDownCircleOutline,
@@ -19,8 +22,6 @@ import {
   IoArrowUpCircleSharp,
   IoBookmarkOutline,
 } from "react-icons/io5";
-import { AiOutlineDelete } from "react-icons/ai";
-import { useRouter } from "next/router";
 
 type PostItemProps = {
   post: Post;
@@ -33,6 +34,11 @@ type PostItemProps = {
   ) => void;
   onSelectPost?: (post: Post) => void;
   onDeletePost: (post: Post) => Promise<boolean>;
+};
+const categoryColors: { [key: string]: string } = {
+  General: "#5C8AFF",
+  Ilkom: "#1B398D",
+  PKU: "#6A5CFF",
 };
 
 const PostItem: React.FC<PostItemProps> = ({
@@ -107,11 +113,26 @@ const PostItem: React.FC<PostItemProps> = ({
       </Flex>
       <Flex direction="column" width="100%">
         <Stack spacing={1} p="10px">
-          <Stack direction="row" spacing={0.6} align="center" fontSize="9pt">
+          <Stack
+            direction="row"
+            spacing={0.6}
+            align="center"
+            justifyContent="space-between"
+            fontSize="9pt"
+          >
             <Text>
               Posted by @{post.creatorDisplayName}{" "}
               {moment(new Date(post.createdAt?.seconds * 1000)).fromNow()}
             </Text>
+            <Button
+              height="20px"
+              paddingRight={4}
+              backgroundColor={categoryColors[post.category] }
+            >
+              <Text fontSize="9pt" fontWeight={600}>
+                {post.category}
+              </Text>
+            </Button>
           </Stack>
           <Text fontSize="12pt" fontWeight={600}>
             {post.caption}
