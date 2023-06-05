@@ -19,11 +19,12 @@ const Icons: React.FC = () => {
           mr={1.5}
           ml={1.5}
           padding={1}
+          color='brand.100'
           cursor="pointer"
           borderRadius={4}
           _hover={{ bg: "gray.200" }}
         >
-          <Icon as={BsChatDots} fontSize={20} />
+          <Icon as={BsChatDots} fontSize={20} fontWeight={900}/>
         </Flex>
       </Flex>
       <>
